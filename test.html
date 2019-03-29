@@ -1,0 +1,40 @@
+<html lang="en">
+<script>
+    const options = [
+        'Chipotle',
+        'Piada',
+        'Tios',
+        'Jamaican Jerk Pit',
+        'Tomokun Noodle Bar',
+        'Knights',
+        'Pretzel Bell',
+        'Mezes',
+        "Neo's",
+        'Indian Buffet',
+        'Elevation Burger',
+        'La Taqueria',
+        'Mama Soto',
+        'Earthen Jar'
+    ];
+
+    function choose(options, excludes) {
+        let choice;
+        do {
+            choice = options[Math.floor(Math.random() * options.length)];
+        } while (excludes.includes(choice));
+
+        return choice;
+    }
+
+    const choices = [];
+    choices.push(choose(options, choices));
+    choices.push(choose(options, choices));
+    choices.push(choose(options, choices));
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('choice').textContent = choices.join(', ');
+    });
+</script>
+<body>
+<div id="choice">Thinking...</div>
+</body>
+</html>
