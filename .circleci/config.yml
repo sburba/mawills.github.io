@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: "circleci/node:10"
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-v1-{{ checksum "yarn.lock" }}
+            - yarn-v1-
+      - run:
+          name: Install Dependencies
+          command: "yarn install"
+      - save_cache:
+          key: yarn-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - run:
+          name: Check Code Style
+          command: "yarn run check-format"
+      - run:
+          name: Run Tests
+          command: "yarn test"
+      - run:
+          name: Run Mutation Tests
+          command: "yarn run mutation-test"
+      - store_test_results:
+          path: coverage/
+      - store_test_results:
+          path: reports/
