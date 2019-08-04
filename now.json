@@ -1,32 +1,44 @@
 {
   "version": 2,
   "name": "whatsforlunch",
+  "env": {
+    "OPEN_WEATHER_API_KEY": "@open-weather-api-key"
+  },
   "builds": [
     {
-      "src": "package.json",
+      "src": "/web/package.json",
       "use": "@now/static-build",
       "config": { "distDir": "build" }
+    },
+    {
+      "src": "api/src/**/*.ts",
+      "use": "@now/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/(.*)",
+      "dest": "/api/src/routes/$1",
+      "headers": { "cache-control": "s-maxage=600,max-age=600" }
+    },
+    {
       "src": "/static/(.*)",
       "headers": { "cache-control": "s-maxage=31536000,immutable" },
-      "dest": "/static/$1"
+      "dest": "/web/static/$1"
     },
-    { "src": "/favicon.ico", "dest": "/favicon.ico" },
-    { "src": "/asset-manifest.json", "dest": "/asset-manifest.json" },
-    { "src": "/manifest.json", "dest": "/manifest.json" },
-    { "src": "/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },
+    { "src": "/favicon.ico", "dest": "/web/favicon.ico" },
+    { "src": "/asset-manifest.json", "dest": "/web/asset-manifest.json" },
+    { "src": "/manifest.json", "dest": "/web/manifest.json" },
+    { "src": "/precache-manifest.(.*)", "dest": "/web/precache-manifest.$1" },
     {
       "src": "/service-worker.js",
       "headers": { "cache-control": "s-maxage=0" },
-      "dest": "/service-worker.js"
+      "dest": "/web/service-worker.js"
     },
     {
       "src": "/(.*)",
       "headers": { "cache-control": "s-maxage=0" },
-      "dest": "/index.html"
+      "dest": "/web/index.html"
     }
   ]
 }

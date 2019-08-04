@@ -10,16 +10,28 @@ interface AppProps {
 
 const App: React.FC<AppProps> = (props: AppProps) => {
   const [choice, setChoice] = useState();
-  const [choices] = useState(() => props.suggester.suggest(3));
+  const [choices, setChoices] = useState<string[]>();
+
   useEffect(() => choice && props.suggester.choose(choice));
+  useEffect(() => {
+    async function loadChoices() {
+      const choices = await props.suggester.suggest(3);
+      setChoices(choices);
+    }
+
+    // noinspection JSIgnoredPromiseFromCall
+    loadChoices();
+  }, [props.suggester]);
 
   const msg = choice ? `${choice} it is` : undefined;
   return (
     <div className="App">
-      <Suggestions
-        choices={choices}
-        onChoiceSelected={choice => setChoice(choice)}
-      />
+      {choices && (
+        <Suggestions
+          choices={choices}
+          onChoiceSelected={choice => setChoice(choice)}
+        />
+      )}
       <Toast msg={msg} />
     </div>
   );

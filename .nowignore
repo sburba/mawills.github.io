@@ -1,0 +1,6 @@
+.idea
+.git
+.env.default
+.env
+node_modules
+README.md
