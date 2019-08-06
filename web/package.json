@@ -23,7 +23,7 @@
     "test": "react-scripts test",
     "mutation-test": "stryker run",
     "eject": "react-scripts eject",
-    "now-dev": "yarn start"
+    "now-dev": "BROWSER=none react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
