@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import { RequestInfo, Response } from "node-fetch";
 import { URLSearchParams, URL } from "url";
 
 const WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
@@ -9,7 +9,6 @@ interface ForecastMain {
 
 interface ForecastWeather {
   id: number;
-  main: string;
 }
 
 interface OpenWeatherApiResponse {
@@ -17,7 +16,7 @@ interface OpenWeatherApiResponse {
   weather: ForecastWeather[];
 }
 
-class WeatherConditions {
+export class WeatherConditions {
   constructor(
     public readonly temp_fahrenheit: number,
     public readonly is_raining: boolean
@@ -31,7 +30,10 @@ function isRaining(weather: ForecastWeather) {
 }
 
 export default class WeatherFetcher {
-  constructor(private readonly openWeatherApiKey: string) {}
+  constructor(
+    private readonly fetch: (url: RequestInfo) => Promise<Response>,
+    private readonly openWeatherApiKey: string
+  ) {}
 
   async get(zip: string): Promise<WeatherConditions> {
     const params = new URLSearchParams({
@@ -42,7 +44,7 @@ export default class WeatherFetcher {
     const url = new URL(WEATHER_URL);
     url.search = params.toString();
 
-    const resp = await fetch(url.toString());
+    const resp = await this.fetch(url.toString());
     const body: OpenWeatherApiResponse = await resp.json();
     const temp = body.main.temp;
     const is_raining = body.weather.find(isRaining) !== undefined;

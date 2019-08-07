@@ -1,5 +1,6 @@
 import { NowRequest, NowResponse } from "@now/node/dist";
 import WeatherFetcher from "../../WeatherFetcher";
+import fetch from "node-fetch";
 
 export default async (_: NowRequest, res: NowResponse) => {
   if (!process.env.OPEN_WEATHER_API_KEY) {
@@ -10,7 +11,8 @@ export default async (_: NowRequest, res: NowResponse) => {
     });
     return;
   }
-  const fetcher = new WeatherFetcher(process.env.OPEN_WEATHER_API_KEY);
+
+  const fetcher = new WeatherFetcher(fetch, process.env.OPEN_WEATHER_API_KEY);
   const weather = await fetcher.get("48104");
   res.status(200).json(weather);
 };

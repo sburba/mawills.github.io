@@ -14,5 +14,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Test output
+/api/coverage
+
 # Mac is silly
 .DS_Store

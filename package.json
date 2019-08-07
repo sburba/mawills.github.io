@@ -5,6 +5,8 @@
     "api"
   ],
   "scripts": {
+    "test": "lerna run test",
+    "mutation-test": "lerna run mutation-test",
     "format": "prettier */src/**/*.ts web/src/**/*.tsx web/src/**/*.css */*.json */*.js --write",
     "check-format": "prettier */src/**/*.ts web/src/**/*.tsx web/src/**/*.css */*.json */*.js"
   },

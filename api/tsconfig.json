@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["esnext"],
+    "lib": [
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -11,10 +13,13 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "../node_modules/@types/jest/index.d.ts"
+  ]
 }
