@@ -19,10 +19,6 @@ now
 
 ## Local Dev
 
-* Install required global dependencies
-```bash
-npm install -g now yarn
-```
 * Copy `.env.default` to `.env` and fill in the required values
 ```bash
 cp .env.example .env
