@@ -14,15 +14,15 @@ const OPTIONS = new Map<string, RestaurantDetails>([
   ["Piada", { outdoorSeating: true }],
   ["Tios", { outdoorSeating: true }],
   ["Jamaican Jerk Pit", { outdoorSeating: true }],
-  ["Tomokun Noodle Bar", { outdoorSeating: false }],
+  ["Tomokun Noodle Bar", { outdoorSeating: true }],
   ["Knights", { outdoorSeating: true }],
   ["Pretzel Bell", { outdoorSeating: true }],
-  ["Neo's", { outdoorSeating: false }],
+  ["Neo's", { outdoorSeating: true }],
   ["Taste of India", { outdoorSeating: false }],
-  ["La Taqueria", { outdoorSeating: false }],
+  ["La Taqueria", { outdoorSeating: true }],
   ["Mama Soto", { outdoorSeating: false }],
   ["Earthen Jar", { outdoorSeating: false }],
-  ["Jolly Pumpkin", { outdoorSeating: false }],
+  ["Jolly Pumpkin", { outdoorSeating: true }],
   ["Frita Batido", { outdoorSeating: true }],
   ["Grizzly Peak", { outdoorSeating: true }],
   ["KouZina", { outdoorSeating: false }],
@@ -30,7 +30,13 @@ const OPTIONS = new Map<string, RestaurantDetails>([
   ["Cottage Inn", { outdoorSeating: true }],
   ["Ashley's", { outdoorSeating: false }],
   ["Chela's", { outdoorSeating: true }],
-  ["Fleetwood Diner", { outdoorSeating: true }]
+  ["Fleetwood Diner", { outdoorSeating: true }],
+  ["Hola Seoul", { outdoorSeating: true }],
+  ["Red Hawk Grill", { outdoorSeating: false }],
+  ["Lunch Room", { outdoorSeating: true }],
+  ["Filling Station", { outdoorSeating: true }],
+  ["No Thai", { outdoorSeating: true }],
+  ["Taco Bell", { outdoorSeating: false }]
 ]);
 
 const suggester = new RestaurantSuggester(
